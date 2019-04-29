@@ -1,1 +1,35 @@
 <h2>Tu eres Admin</h2>
+
+<a href="http://localhost:3000/admin/create-user">
+  <button>Create User</button>
+</a>
+
+<a href="http://localhost:3000/admin/create-client">
+  <button>Create Client</button>
+</a>
+
+
+<div>
+  <h2>Usersss</h2>
+  <div id="users">
+    {{#each users as |user| }}
+    <p>{{user.name}}</p>
+    <a href="/admin/users/{{user._id}}">
+      <button>Delete User</button>
+    </a>
+    {{/each}}
+  </div>
+</div>
+
+
+<div>
+  <h2>Clients</h2>
+  <div id="clients">
+    {{#each clients as |client| }}
+    <p>{{client.name}}</p>
+    <a href="/admin/clients/{{client._id}}">
+      <button>Delete client</button>
+    </a>
+    {{/each}}
+  </div>
+</div>

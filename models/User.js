@@ -8,12 +8,12 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["Admin", "User", "Client"],
-      default: "Client"
+      default: "User"
     },
     status: {
       type: String,
-      enum: ["Standar", "Pro"],
-      default: "Standar"
+      enum: ["Standard", "Pro"],
+      default: "Standard"
     },
     sector: String,
     company: String

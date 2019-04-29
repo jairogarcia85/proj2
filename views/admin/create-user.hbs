@@ -1,6 +1,10 @@
-<h2>{{title}}</h2>
+<h2> USER</h2>
 
-<form action="{{action}}" method="POST">
+<form action="create-user" method="POST">
+  <p>
+    <label>Name</label>
+    <input type="text" name="name" />
+  </p>
   <p>
     <label>Email</label>
     <input type="email" name="email" />
@@ -10,7 +14,7 @@
     <input type="password" name="password" />
   </p>
   <p>
-    <input type="submit" value={{title}}>
+    <input type="submit" value="Enviar">
   </p>
 
 </form>

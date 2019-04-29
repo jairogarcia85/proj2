@@ -13,50 +13,77 @@ router.get("/users", (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.post("/admin/users/create", (req, res, next) => {
-//   User.create({ ...req.body })
-//     .then(() => res.redirect("/admin/users"))
-//     .catch(err => next(err));
-// });
-
-// router.get("/admin/users/delete/:id", (req, res, next) => {
+// router.get("/users:id", (req, res, next) => {
 //   const { id } = req.params;
 //   User.findByIdAndDelete(id)
 //     .then(() => res.redirect("admin/users"))
 //     .catch(err => next(err));
 // });
 
-router.get('/create', (req, res, next) => res.render('admin/create'))
+// router.post("/admin/users/create", (req, res, next) => {
+//   User.create({ ...req.body })
+//     .then(() => res.redirect("/admin/users"))
+//     .catch(err => next(err));
+// });
 
-router.post("/create"),(req, res, next) => {
-  // res.render('admin/create')
-    // User.register({ ...req.body }, req.body.password)
-    //   .then(() => {
-    //     res.redirect("/create");
-    //   })
-    //   .catch(err => next(err));
-  };
+router.get("/create-user", (req, res, next) => res.render("admin/create-user"));
 
-router.get("/clients", (req, res, next) => {
-  User.find({ role: "Client" })
-    .sort({ createdAt: -1 })
-    .then(clients => {
-      res.render("admin/client", { clients });
+router.post("/create-user", (req, res, next) => {
+  User.register({ ...req.body }, req.body.password)
+    .then(() => {
+      res.redirect("/admin/create-user");
     })
     .catch(err => next(err));
 });
 
-router.post("/admin/users/create", (req, res, next) => {
-  User.create({ ...req.body })
-    .then(() => res.redirect("/admin/users"))
+router.get("/create-client", (req, res, next) =>
+  res.render("admin/create-client")
+);
+
+router.post("/create-client", (req, res, next) => {
+  User.register({ ...req.body, role: "Client" }, req.body.password)
+    .then(() => {
+      res.redirect("/admin/create-client");
+    })
     .catch(err => next(err));
 });
 
-router.get("/admin/users/delete/:id", (req, res, next) => {
+router.get("/users", (req, res, next) => {
+  User.find({ role: "User" })
+    .sort({ createdAt: -1 })
+    .then(users => {
+      res.render("admin/users", { users });
+    })
+    .catch(err => next(err));
+});
+
+router.get("/users/:id", (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndDelete(id)
     .then(() => res.redirect("/admin/users"))
     .catch(err => next(err));
 });
+
+router.get("/clients", (req, res, next) => {
+  User.find({ role: "Client" })
+    .sort({ createdAt: -1 })
+    .then(clients => {
+      res.render("admin/clients", { clients });
+    })
+    .catch(err => next(err));
+});
+
+router.get("/clients/:id", (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndDelete(id)
+    .then(() => res.redirect("/admin/clients"))
+    .catch(err => next(err));
+});
+
+// router.post("/admin/users/create", (req, res, next) => {
+//   User.create({ ...req.body })
+//     .then(() => res.redirect("/admin/users"))
+//     .catch(err => next(err));
+// });
 
 module.exports = router;
