@@ -23,17 +23,17 @@ router.get("/admin/clients", (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.post("/admin/artists/create", (req, res, next) => {
-//   Artist.create({ ...req.body })
-//     .then(() => res.redirect("/admin/artists"))
-//     .catch(err => next(err));
-// });
+router.post("/admin/users/create", (req, res, next) => {
+  User.create({ ...req.body })
+    .then(() => res.redirect("/admin/users"))
+    .catch(err => next(err));
+});
 
-// router.get("/admin/artists/delete/:id", (req, res, next) => {
-//   const { id } = req.params;
-//   Artist.findByIdAndDelete(id)
-//     .then(() => res.redirect("/admin/artists"))
-//     .catch(err => next(err));
-// });
+router.get("/admin/users/delete/:id", (req, res, next) => {
+  const { id } = req.params;
+  User.findByIdAndDelete(id)
+    .then(() => res.redirect("/admin/users"))
+    .catch(err => next(err));
+});
 
 module.exports = router;

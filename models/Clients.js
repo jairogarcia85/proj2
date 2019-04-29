@@ -4,7 +4,7 @@ const PLM = require("passport-local-mongoose");
 const userSchema = new mongoose.Schema(
   {
     email: String,
-    type: {
+    role: {
       type: String,
       enum: ["Standar", "Pro"],
       default: "Standar"
