@@ -69,7 +69,9 @@ app.locals.title = "Express - Generated with IronGenerator";
 
 const index = require("./routes/index");
 const auth = require("./routes/auth");
+const administrador = require('./routes/admin');
 app.use("/", index);
 app.use("/", auth);
+app.use('/admin', administrador);
 
 module.exports = app;
