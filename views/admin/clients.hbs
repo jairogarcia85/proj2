@@ -1,0 +1,24 @@
+<div>
+  <h2>Clients</h2>
+
+  <div id="clients">
+    {{#each user as |user| }}
+    <p>{{user.name}}</p>
+    <a href="/admin/clients/delete/{{user._id}}">
+      <button>Delete client</button>
+    </a>
+    {{/each}}
+  </div>
+
+  <div id="create-user">
+    <form action="/admin/user/create" method="POST">
+      <input type="text" name="name" />
+      <input type="text" name="email" />
+      <input type="text" name="role" />
+      <input type="text" name="status">
+      <input type="submit" value="Create user">
+    </form>
+  </div>
+
+
+</div>
