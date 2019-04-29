@@ -17,7 +17,7 @@ const userSchema = new mongoose.Schema(
     versionKey: false
   }
 );
-
+//se agrega el plugin de PLM
 userSchema.plugin(PLM, { usernameField: "email" });
 
 module.exports = mongoose.model("User", userSchema);
