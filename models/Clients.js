@@ -10,8 +10,14 @@ const clientSchema = new mongoose.Schema(
       enum: ["Standard", "Pro"],
       default: "Standard"
     },
-    sector: String,
-    company: String
+    sector: {
+      //liga al ticket con el user
+      type: String,
+      enum: ["area1", "area2", "area3", "area4"],
+      default: "area1"
+    },
+
+    company: String //liga al ticket con el client
   },
   {
     timestamps: true,
