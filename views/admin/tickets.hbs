@@ -1,0 +1,30 @@
+<h2>Tickets</h2>
+
+<h2>Create new Ticket</h2>
+
+<form action="/tickets" method="POST">
+  <p>
+    <label>Titulo</label>
+    <input type="text" name="title" />
+  </p>
+  <p>
+    <label>Area</label>
+    <input type="text" name="area" />
+  </p>
+  <p>
+    <label>Description</label>
+    <textarea name="description"></textarea>
+  </p>
+
+  <p>
+    <label>Status</label>
+    <select name="status" id="">
+      <option value="Open">Open</option>
+      <option value="Close">Close</option>
+    </select>
+  </p>
+  <p>
+    <input type="submit" value="Submit">
+  </p>
+
+</form>

@@ -5,8 +5,6 @@ const { isLogged } = require("../handlers/middlewares");
 
 router.get("/signup", (req, res, next) => res.render("auth/signup"));
 
-router.get("/admin/profile", (req, res, next) => res.render("admin/profile"));
-
 router.post("/signup", (req, res, next) => {
   User.register({ ...req.body }, req.body.password)
     .then(() => {

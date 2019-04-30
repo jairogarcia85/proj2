@@ -2,7 +2,14 @@ const router = require("express").Router();
 const User = require("../models/User");
 const Ticket = require("../models/Ticket");
 
-router.get("/", (req, res, next) => res.render("admin/profile"));
+router.get("/", (req, res, next) => {
+  const usersPromise = User.find({ role: "User" });
+  const clientsPromise = User.find({ role: "Client" });
+
+  Promise.all([usersPromise, clientsPromise]).then(([users, clients]) => {
+    res.render("admin/profile", { users, clients });
+  });
+});
 
 router.get("/users", (req, res, next) => {
   User.find({ role: "User" })
