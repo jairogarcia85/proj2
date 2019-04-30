@@ -2,9 +2,12 @@ const router = require("express").Router();
 const Ticket = require("../models/Ticket");
 const { isLogged } = require("../handlers/middlewares");
 
-router.get("/tickets", (req, res, next) => res.render("admin/tickets"));
+router.get("/", (req, res, next) => res.render("admin/tickets"));
 
-router.post("/tickets", (req, res, next) => {
+router.post("/", (req, res, next) => {
+  if(!req.user) {
+    res.redirect("/auth/login")
+  }
   if (req.user.role === "Client") {
     Ticket.create({ ...req.body })
       .then(() => {
@@ -12,11 +15,11 @@ router.post("/tickets", (req, res, next) => {
       })
       .catch(err => next(err));
   } else {
-    res.redirect("/login");
+    res.redirect("/auth/login");
   }
 });
 
-router.post("/tickets/:id", (req, res, next) => {
+router.post("/:id", (req, res, next) => {
   const { id } = req.params;
   if (
     req.user.role === "Client" ||
@@ -30,5 +33,25 @@ router.post("/tickets/:id", (req, res, next) => {
       .catch(err => next(err));
   }
 });
+
+router.get("/view-tickets", (req, res, next) => {
+  Ticket.find({  })
+    .sort({ createdAt: -1 })
+    .then(tickets => {
+      res.render("admin/view-tickets", { tickets });
+    })
+    .catch(err => next(err));
+});
+
+
+router.get("/:id", (req, res, next) => {
+  const {id} = req.params;
+  Ticket.findById(id)
+  .then((data) => {
+    console.log(data)
+    res.render("admin/tickets-detail", data);
+  })
+    .catch(err => next(err));
+})
 
 module.exports = router;

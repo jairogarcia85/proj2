@@ -87,10 +87,4 @@ router.get("/clients/:id", (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.post("/admin/users/create", (req, res, next) => {
-//   User.create({ ...req.body })
-//     .then(() => res.redirect("/admin/users"))
-//     .catch(err => next(err));
-// });
-
 module.exports = router;

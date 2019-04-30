@@ -71,9 +71,12 @@ const index = require("./routes/index");
 const auth = require("./routes/auth");
 const administrador = require("./routes/admin");
 const ticketss = require("./routes/tickets");
+const clientss =  require("./routes/client");
+const userss = require("./routes/user");
 app.use("/", index);
-app.use("/", auth);
+app.use("/auth", auth);
 app.use("/admin", administrador);
-app.use("/", ticketss);
-
+app.use("/tickets", ticketss);
+app.use("/client", clientss);
+app.use("/user", userss);
 module.exports = app;
