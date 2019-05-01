@@ -1,5 +1,9 @@
 const router = require("express").Router();
 const Ticket = require("../models/Ticket");
+const User = require("../models/User");
+
+const { ObjectId } = require("mongoose").Types;
+
 const { isLogged } = require("../handlers/middlewares");
 
 router.get("/create-ticket", (req, res, next) => res.render("admin/tickets"));
@@ -10,8 +14,18 @@ router.post("/", (req, res, next) => {
   }
   if (req.user.role === "Client") {
     Ticket.create({ ...req.body })
-      .then(() => {
-        res.redirect("/tickets");
+      .then(ticket => {
+        console.log(ticket);
+        User.findByIdAndUpdate(
+          req.user._id,
+          {
+            $push: { ticket: ObjectId(ticket._id) }
+          },
+          { new: true }
+        ).then(user => {
+          console.log(user);
+          res.redirect("/client");
+        });
       })
       .catch(err => next(err));
   } else {
