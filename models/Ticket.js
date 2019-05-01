@@ -4,22 +4,39 @@ const ticketSchema = new mongoose.Schema({
   title: String,
   area: String,
   description: String,
+  userComment: {
+    username: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "User"
+    },
+    content: String,
+    date: Date
+  },
+  clientComment: {
+    clientname: {
+      type:mongoose.Schema.Types.ObjectId,
+      ref: "Client"
+    },
+    content: String,
+    date: Date
+  },
+
   number: {
     type: Number,
     default: Date.now
   },
   status: {
     type: String,
-    enum: ["Open", "Close"],
+    enum: ["Open", "Pending", "Closed"],
     default: "Open"
   },
   sector: {
     //liga al ticket con el user
     type: String,
     enum: ["area1", "area2", "area3", "area4"],
-    default: 'area1'
+    default: "area1"
   },
-  company: String, //liga al ticket con el client
+  company: String //liga al ticket con el client
 });
 
 // const Ticket = mongoose.model('Ticket', ticketSchema)

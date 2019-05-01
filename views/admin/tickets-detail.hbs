@@ -1,14 +1,19 @@
-<h2>Detail View</h2>
-<br>
+<h1>Vista de Detalle</h1>
+<p>{{this.title}}</p>
+<p>{{this.status}}</p>
+<p>{{this.description}}</p>
 
-<a class="button is-primary " href="/tickets/create-ticket">Create Ticket</a>
+<form action="/user/tickets/{{this._id}}" method="POST" id="details">
+  <label>Status</label>
+  <select name="status" form="details">
+    <option value="Open">Open</option>
+    <option value="Pending">Pending</option>
+    <option value="Closed">Closed</option>
+    <br />
+  </select>
+  <p>
+    <input type="submit" value="Enviar">
+  </p>
 
-<a class="button is-primary " href="/client">My Tickets</a>
 
-<hr>
-
-<h3>Title: {{this.title}}</h3><br>
-<p> <strong>Status: {{this.status}}</strong></p><br>
-<p><strong>Description:</strong> {{this.description}}</p>
-
-<hr>
+</form>
