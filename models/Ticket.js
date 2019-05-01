@@ -19,7 +19,7 @@ const ticketSchema = new mongoose.Schema({
     enum: ["area1", "area2", "area3", "area4"],
     default: 'area1'
   },
-  company: String //liga al ticket con el client
+  company: String, //liga al ticket con el client
 });
 
 // const Ticket = mongoose.model('Ticket', ticketSchema)

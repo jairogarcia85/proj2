@@ -21,7 +21,11 @@ const userSchema = new mongoose.Schema(
       enum: ["area1", "area2", "area3", "area4"],
       default: "area1"
     },
-    company: String //liga al ticket con el client
+    company: String, //liga al ticket con el client
+    ticket: [
+      {type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket"}
+    ]
   },
 
   {

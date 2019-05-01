@@ -17,7 +17,11 @@ const clientSchema = new mongoose.Schema(
       default: "area1"
     },
 
-    company: String //liga al ticket con el client
+    company: String, //liga al ticket con el client
+    ticket: [
+      {type: mongoose.Schema.Types.ObjectId,
+      ref: "Ticket"}
+    ]
   },
   {
     timestamps: true,
