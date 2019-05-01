@@ -1,2 +1,18 @@
 <h2>Client tickets</h2>
 
+<a href="/tickets/create-ticket">
+  <button>Create Ticket</button>
+</a>
+
+<a href="/auth/logout">
+  <button>Logout</button>
+</a>
+
+<div id="tickets">
+  {{#each tickets as |ticket| }}
+  <p>{{ticket.title}}</p>
+  <p>{{ticket.status}}</p>
+  <a href="/tickets/{{ticket._id}}">Entrar</a>
+  {{/each}}
+
+</div>

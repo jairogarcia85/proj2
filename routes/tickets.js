@@ -2,11 +2,11 @@ const router = require("express").Router();
 const Ticket = require("../models/Ticket");
 const { isLogged } = require("../handlers/middlewares");
 
-router.get("/", (req, res, next) => res.render("admin/tickets"));
+router.get("/create-ticket", (req, res, next) => res.render("admin/tickets"));
 
 router.post("/", (req, res, next) => {
-  if(!req.user) {
-    res.redirect("/auth/login")
+  if (!req.user) {
+    res.redirect("/auth/login");
   }
   if (req.user.role === "Client") {
     Ticket.create({ ...req.body })
@@ -35,7 +35,7 @@ router.post("/:id", (req, res, next) => {
 });
 
 router.get("/view-tickets", (req, res, next) => {
-  Ticket.find({  })
+  Ticket.find({})
     .sort({ createdAt: -1 })
     .then(tickets => {
       res.render("admin/view-tickets", { tickets });
@@ -43,15 +43,14 @@ router.get("/view-tickets", (req, res, next) => {
     .catch(err => next(err));
 });
 
-
 router.get("/:id", (req, res, next) => {
-  const {id} = req.params;
+  const { id } = req.params;
   Ticket.findById(id)
-  .then((data) => {
-    console.log(data)
-    res.render("admin/tickets-detail", data);
-  })
+    .then(data => {
+      console.log(data);
+      res.render("admin/tickets-detail", data);
+    })
     .catch(err => next(err));
-})
+});
 
 module.exports = router;
