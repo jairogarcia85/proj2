@@ -24,7 +24,7 @@ router.post("/login", (req, res, next) => {
       if (err) return next(err);
       req.app.locals.loggedUser = user;
       if (req.user.role === "Admin") return res.redirect("/admin/profile");
-      else if (req.user.role === "User") return res.redirect("/user");
+      else if (req.user.role === "User") return res.redirect("/user/view-tickets");
       else if (req.user.role === "Client") return res.redirect("/client");
     });
   })(req, res, next);
