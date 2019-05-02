@@ -1,4 +1,4 @@
-<h2>Client tickets</h2>
+<h1>Client tickets</h1>
 
 <a class="button is-primary " href="/tickets/create-ticket">Create Ticket</a>
 
@@ -10,9 +10,11 @@
 
   {{#each tickets as |ticket| }}
   <hr>
-  <h3>{{ticket.title}} | Status: {{ticket.status}} </h3> <br>
-  <p>{{ticket.description}}</p><br>
-  <a class="button is-primary" href="/tickets/{{ticket._id}}">Entrar</a>
+  <div class="ticket-box">
+    <h3>{{ticket.title}} <|> Status: {{ticket.status}} </h3> <br>
+    <p><strong>Description:</strong> {{ticket.description}}</p><br>
+    <a class="button is-primary" href="/tickets/{{ticket._id}}">Enter</a>
+  </div>
   <hr>
   {{/each}}
 

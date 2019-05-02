@@ -1,8 +1,10 @@
 const router = require("express").Router();
 const User = require("../models/User");
 const Ticket = require("../models/Ticket");
+const { isLogged } = require("../handlers/middlewares");
+const { isAdmin } = require("../handlers/middlewares");
 
-router.get("/", (req, res, next) => {
+router.get("/", isAdmin, (req, res, next) => {
   const usersPromise = User.find({ role: "User" });
   const clientsPromise = User.find({ role: "Client" });
 
@@ -11,7 +13,7 @@ router.get("/", (req, res, next) => {
   });
 });
 
-router.get("/users", (req, res, next) => {
+router.get("/users", isAdmin, (req, res, next) => {
   User.find({ role: "User" })
     .sort({ createdAt: -1 })
     .then(users => {
@@ -20,20 +22,9 @@ router.get("/users", (req, res, next) => {
     .catch(err => next(err));
 });
 
-// router.get("/users:id", (req, res, next) => {
-//   const { id } = req.params;
-//   User.findByIdAndDelete(id)
-//     .then(() => res.redirect("admin/users"))
-//     .catch(err => next(err));
-// });
-
-// router.post("/admin/users/create", (req, res, next) => {
-//   User.create({ ...req.body })
-//     .then(() => res.redirect("/admin/users"))
-//     .catch(err => next(err));
-// });
-
-router.get("/create-user", (req, res, next) => res.render("admin/create-user"));
+router.get("/create-user", isAdmin, (req, res, next) =>
+  res.render("admin/create-user")
+);
 
 router.post("/create-user", (req, res, next) => {
   User.register({ ...req.body }, req.body.password)
@@ -43,7 +34,7 @@ router.post("/create-user", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get("/create-client", (req, res, next) =>
+router.get("/create-client", isAdmin, (req, res, next) =>
   res.render("admin/create-client")
 );
 
@@ -55,7 +46,7 @@ router.post("/create-client", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get("/users", (req, res, next) => {
+router.get("/users", isAdmin, (req, res, next) => {
   User.find({ role: "User" })
     .sort({ createdAt: -1 })
     .then(users => {
@@ -64,14 +55,14 @@ router.get("/users", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get("/users/:id", (req, res, next) => {
+router.get("/users/:id", isAdmin, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndDelete(id)
     .then(() => res.redirect("/admin/users"))
     .catch(err => next(err));
 });
 
-router.get("/clients", (req, res, next) => {
+router.get("/clients", isLogged, (req, res, next) => {
   User.find({ role: "Client" })
     .sort({ createdAt: -1 })
     .then(clients => {
@@ -80,10 +71,10 @@ router.get("/clients", (req, res, next) => {
     .catch(err => next(err));
 });
 
-router.get("/clients/:id", (req, res, next) => {
+router.get("/clients/:id", isAdmin, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndDelete(id)
-    .then(() => res.redirect("/admin/clients"))
+    .then(() => res.redirect("/admin"))
     .catch(err => next(err));
 });
 

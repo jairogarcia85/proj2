@@ -6,9 +6,11 @@ const { ObjectId } = require("mongoose").Types;
 
 const { isLogged } = require("../handlers/middlewares");
 
-router.get("/create-ticket", (req, res, next) => res.render("admin/tickets"));
+router.get("/create-ticket", isLogged, (req, res, next) =>
+  res.render("admin/tickets")
+);
 
-router.post("/", (req, res, next) => {
+router.post("/", isLogged, (req, res, next) => {
   if (!req.user) {
     res.redirect("/auth/login");
   }
@@ -48,10 +50,13 @@ router.post("/:id", (req, res, next) => {
   }
 });
 
-router.get("/view-tickets", (req, res, next) => {
+router.get("/view-tickets", isLogged, (req, res, next) => {
   Ticket.find({})
     .sort({ createdAt: -1 })
     .then(tickets => {
+      if (req.user.role === "Client") {
+        res.redirect("../client");
+      }
       res.render("admin/view-tickets", { tickets });
     })
     .catch(err => next(err));
@@ -66,6 +71,5 @@ router.get("/:id", (req, res, next) => {
     })
     .catch(err => next(err));
 });
-
 
 module.exports = router;

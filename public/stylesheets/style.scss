@@ -1,6 +1,12 @@
 body {
   margin: 20px 100px 0 100px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Montserrat", sans-serif;
+}
+
+h1 {
+  font-size: 28px;
+  text-align: center;
+  font-weight: 800;
 }
 
 h2 {
@@ -27,6 +33,15 @@ a {
   border: 1px solid rgb(206, 199, 199);
 }
 
+.contact-form {
+  box-shadow: 10px 10px 30px grey;
+  margin: 20px auto;
+  width: 900px;
+  height: 700px;
+  padding: 50px;
+  border: 1px solid rgb(206, 199, 199);
+}
+
 .login-form h2 {
   text-align: center;
   margin-bottom: 30px;
@@ -43,9 +58,30 @@ a {
 
 h3 {
   font-size: 18px;
-  font-weight: 700;
+  font-weight: 600;
 }
 
 footer {
   margin-top: 60px;
+  position: relative;
+  bottom: 30px;
+}
+
+.ticket-box {
+  box-shadow: 1px 1px 12px grey;
+  margin: 0px auto;
+  padding: 20px;
+  border: 1px solid rgb(206, 199, 199);
+}
+
+.select {
+  font-size: 12px;
+}
+
+.line-home {
+  margin-top: -20px;
+}
+
+.users-grid {
+  display: grid;
 }
