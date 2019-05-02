@@ -48,6 +48,22 @@ router.post("/:id", (req, res, next) => {
   }
 });
 
+//router.get("/:id", (req, res, next) => {
+//  const { id } = req.params;
+//  if (
+//    req.user.role !== "Client" ||
+//    req.user.role !== "User" ||
+//    req.user.role !== "Admin"
+//  ) {
+//    Ticket.findByIdAndUpdate(id, { status: req.body.status })
+//      .then(() => {
+//        res.redirect("/auth/login");
+//      })
+//      .catch(err => next(err));
+//  }
+//});
+
+
 router.get("/view-tickets", (req, res, next) => {
   Ticket.find({})
     .sort({ createdAt: -1 })

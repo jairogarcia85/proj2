@@ -1,5 +1,5 @@
 const router = require("express").Router();
-const Users = require("../models/User");
+//const Users = require("../models/User");
 const Ticket = require("../models/Ticket");
 const { isLogged } = require("../handlers/middlewares");
 
@@ -42,7 +42,10 @@ router.post('/tickets/:id',(req, res, next) => {
 
   Ticket.findByIdAndUpdate(id, {status: req.body.status}, {new: true})
     .then(ticket => {
-      console.log(ticket)
+      if(req.user.role === "Client"){
+        res.redirect('/client')
+      }
+
       res.redirect('/user/view-tickets');
     })
     .catch(err => next(err))

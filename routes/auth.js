@@ -23,7 +23,7 @@ router.post("/login", (req, res, next) => {
     req.logIn(user, err => {
       if (err) return next(err);
       req.app.locals.loggedUser = user;
-      if (req.user.role === "Admin") return res.redirect("/admin/profile");
+      if (req.user.role === "Admin") return res.redirect("/admin");
       else if (req.user.role === "User") return res.redirect("/user/view-tickets");
       else if (req.user.role === "Client") return res.redirect("/client");
     });

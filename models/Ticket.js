@@ -2,7 +2,6 @@ const mongoose = require("mongoose");
 
 const ticketSchema = new mongoose.Schema({
   title: String,
-  area: String,
   description: String,
   userComment: {
     username: {
