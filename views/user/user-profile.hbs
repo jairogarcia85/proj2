@@ -1,20 +1,17 @@
-<h2>User tickets</h2>
+<h1>All tickets</h1>
 
-<a href="/tickets/create-ticket">
-  <button>Create Ticket</button>
-</a>
 
-<a href="/auth/logout">
-  <button>Logout</button>
-</a>
 
 <div id="tickets">
+
   {{#each tickets as |ticket| }}
-  <p>{{ticket.title}}</p>
-  <p>{{ticket.status}}</p>
-  <a href="/tickets/{{ticket._id}}">Entrar</a>
-  
+  <hr>
+  <div class="ticket-box">
+    <h3>{{ticket.title}} <|> Status: {{ticket.status}}</h3><br>
+    <p><strong>Description:</strong> {{ticket.description}}</p><br>
+    <a class="button is-primary" href="/tickets/{{ticket._id}}">Entrar</a>
+  </div>
+  <hr>
   {{/each}}
 
 </div>
-

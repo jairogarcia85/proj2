@@ -1,44 +1,47 @@
-<h2>Tu eres Admin</h2>
+<h1>Admin Panel</h1>
 
 <a href="/admin/create-user">
-  <button>Create User</button>
+  <input class="button is-primary" type="submit" value="Create User">
 </a>
 
 <a href="/admin/create-client">
-  <button>Create Client</button>
+  <input class="button is-primary" type="submit" value="Create Client">
 </a>
 
-<a href="/auth/login">
-  <button>Login</button>
-</a>
-
-<a href="/auth/logout">
-  <button>Logout</button>
-</a>
-
+<hr>
 
 
 <div>
-  <h2>Usersss</h2>
-  <div id="users">
+  <h2>Users</h2>
+  <br>
+  <div id="users" class="users-grid">
     {{#each users as |user| }}
-    <p>{{user.name}}</p>
-    <a href="/admin/users/{{user._id}}">
-      <button>Delete User</button>
-    </a>
+    <div>
+      <h3>Nombre: {{user.name}}</h3>
+      <a href="/admin/users/{{user._id}}">
+        <input class="button is-primary" type="submit" value="Delete User">
+      </a>
+    </div>
+    <br>
     {{/each}}
   </div>
 </div>
 
+<br>
+<hr>
 
 <div>
   <h2>Clients</h2>
-  <div id="clients">
+  <br>
+  <div id="clients" class="users-grid">
     {{#each clients as |client| }}
-    <p>{{client.name}}</p>
-    <a href="/admin/clients/{{client._id}}">
-      <button>Delete client</button>
-    </a>
+    <div>
+      <h3>Nombre: {{client.name}}</h3>
+      <a href="/admin/clients/{{client._id}}">
+        <input class="button is-primary" type="submit" value="Delete Client">
+      </a>
+    </div>
+    <br>
     {{/each}}
   </div>
 </div>

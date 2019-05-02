@@ -1,26 +1,41 @@
 <h2>Create new Ticket</h2>
-
-<form action="/tickets" method="POST">
+<br>
+<form action="/tickets" method="POST" class="ticket-box ">
+  <br>
+  <div class="field">
+    <h3>
+      <label>Titulo</label>
+      <input type="text" name="title" class="input" />
+    </h3>
+  </div>
+  <br>
+  <div class="field">
+    <h3>
+      <label>Area</label>
+      <input type="text" name="area" class="input" />
+    </h3>
+  </div>
+  <br>
+  <div class="field">
+    <h3>
+      <label>Description</label>
+      <textarea name="description" class="input"></textarea>
+    </h3>
+  </div>
+  <br>
+  <div class="field">
+    <h3>
+      <label>Status</label>
+      <select class="select" name="status" id="">
+        <option value="Open">Open</option>
+        <option value="Pending">Pending</option>
+        <option value="Close">Close</option>
+      </select>
+    </h3>
+  </div>
+  <br>
   <p>
-    <label>Titulo</label>
-    <input type="text" name="title" />
-  </p>
-  <p>
-    <label>Description</label>
-    <textarea name="description"></textarea>
-  </p>
-
-  <p>
-    <label>Sector</label>
-    <select name="sector" id="">
-      <option value="area1">Area 1</option>
-      <option value="area2">Area 2</option>
-      <option value="area3">Area 3</option>
-      <option value="area4">Area 4</option>
-    </select>
-  </p>
-  <p>
-    <input type="submit" value="Submit">
+    <input class="button is-primary" type="submit" value="Submit">
   </p>
 
 </form>

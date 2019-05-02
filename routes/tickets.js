@@ -48,6 +48,27 @@ router.post("/:id", (req, res, next) => {
   }
 });
 
+
+
+router.get("/view-tickets", (req, res, next) => {
+  Ticket.find({})
+  .sort({ createdAt: -1 })
+  .then(tickets => {
+    res.render("admin/view-tickets", { tickets });
+  })
+  .catch(err => next(err));
+});
+
+router.get("/:id", (req, res, next) => {
+  const { id } = req.params;
+  Ticket.findById(id)
+  .then(data => {
+    console.log(data);
+    res.render("admin/tickets-detail", data);
+  })
+  .catch(err => next(err));
+});
+
 //router.get("/:id", (req, res, next) => {
 //  const { id } = req.params;
 //  if (
@@ -62,26 +83,5 @@ router.post("/:id", (req, res, next) => {
 //      .catch(err => next(err));
 //  }
 //});
-
-
-router.get("/view-tickets", (req, res, next) => {
-  Ticket.find({})
-    .sort({ createdAt: -1 })
-    .then(tickets => {
-      res.render("admin/view-tickets", { tickets });
-    })
-    .catch(err => next(err));
-});
-
-router.get("/:id", (req, res, next) => {
-  const { id } = req.params;
-  Ticket.findById(id)
-    .then(data => {
-      console.log(data);
-      res.render("admin/tickets-detail", data);
-    })
-    .catch(err => next(err));
-});
-
 
 module.exports = router;

@@ -1,16 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>{{title}}</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.4/css/bulma.min.css">
+  <script defer src="https://use.fontawesome.com/releases/v5.3.1/js/all.js"></script>
   <link rel="stylesheet" href="/stylesheets/style.css" />
 </head>
+
 <body>
+
+  <nav class="navbar" role="navigation" aria-label="main navigation">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="/">
+        <img src="/images/ticketdesk-logo.png" width="140" height="52">
+      </a>
+
+      <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false"
+        data-target="navbarBasicExample">
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+        <span aria-hidden="true"></span>
+      </a>
+    </div>
+
+    <div id="navbarBasicExample" class="navbar-menu">
+      <div class="navbar-start">
+        <a class="navbar-item" href="/">
+          Home
+        </a>
+
+        <a class="navbar-item" href="/contact">
+          Documentation
+        </a>
+
+        <a class="navbar-item">
+          Contact
+        </a>
+
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link">
+            More
+          </a>
+
+          <div class="navbar-dropdown">
+            <a class="navbar-item">
+              About
+            </a>
+            <a class="navbar-item">
+              Jobs
+            </a>
+            <hr class="navbar-divider">
+            <a class="navbar-item">
+              Report an issue
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="navbar-end">
+        <div class="navbar-item">
+          <div class="buttons">
+            <a class="button is-primary" href="/user/view-tickets">
+              <strong>My Tickets</strong>
+            </a>
+            <a class="button is-primary" href="/auth/login">
+              <strong>Log in</strong>
+            </a>
+            <a class="button is-light" href="/auth/logout">
+              Log out
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <hr class="line-home">
 
   {{{body}}}
 
+  <hr class="line-home-footer">
+
+  <footer>
+    <div class="content has-text-centered">
+      <p>
+        <strong>TicketDesK</strong> by <a href="#">IT Technologies</a> ©2019.
+      </p>
+    </div>
+  </footer>
+
   <script src="/javascripts/script.js"></script>
 </body>
+
 </html>

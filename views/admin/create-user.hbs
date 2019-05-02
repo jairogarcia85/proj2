@@ -1,29 +1,26 @@
-<h2> USER</h2>
-
-<form action="create-user" method="POST">
-  <p>
-    <label>Name</label>
-    <input type="text" name="name" />
-  </p>
-  <p>
-    <label>Email</label>
-    <input type="email" name="email" />
-  </p>
-  <p>
-    <label>Password</label>
-    <input type="password" name="password" />
-  </p>
-  <p>
-    <label>Sector</label>
-    <select name="sector" id="">
-      <option value="area1">Area 1</option>
-      <option value="area2">Area 2</option>
-      <option value="area3">Area 3</option>
-      <option value="area4">Area 4</option>
-    </select>
-  </p>
-  <p>
-    <input type="submit" value="Enviar">
-  </p>
-
-</form>
+<h1>Create User</h1>
+<a class="button is-primary " href="/admin">Admin Panel</a>
+<br>
+<hr>
+<div class="ticket-box ">
+  <br>
+  <form action="create-user" method="POST">
+    <h3>
+      <label>Name</label>
+      <input type="text" name="name" class="input" />
+    </h3>
+    <h3>
+      <label>Email</label>
+      <input type="email" name="email" class="input" />
+    </h3>
+    <h3>
+      <label>Password</label>
+      <input type="password" name="password" class="input" />
+    </h3>
+    <br>
+    <p>
+      <input type="submit" value="Enviar" class="button is-primary">
+    </p>
+    <br>
+  </form>
+</div>

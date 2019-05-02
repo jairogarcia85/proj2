@@ -20,3 +20,4 @@ exports.isClient = (req, res, next) => {
   if (req.user.role === "Client") return next();
   res.redirect("/auth/login");
 };
+
