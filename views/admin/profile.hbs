@@ -17,7 +17,7 @@
   <div id="users" class="users-grid">
     {{#each users as |user| }}
     <div>
-      <h3>Nombre: {{user.name}}</h3>
+      <h3>Name: {{user.name}}</h3>
       <a href="/admin/users/{{user._id}}">
         <input class="button is-primary" type="submit" value="Delete User">
       </a>
@@ -36,7 +36,7 @@
   <div id="clients" class="users-grid">
     {{#each clients as |client| }}
     <div>
-      <h3>Nombre: {{client.name}}</h3>
+      <h3>Name: {{client.name}}</h3>
       <a href="/admin/clients/{{client._id}}">
         <input class="button is-primary" type="submit" value="Delete Client">
       </a>

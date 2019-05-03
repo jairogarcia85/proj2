@@ -58,7 +58,7 @@ router.get("/users", isAdmin, (req, res, next) => {
 router.get("/users/:id", isAdmin, (req, res, next) => {
   const { id } = req.params;
   User.findByIdAndDelete(id)
-    .then(() => res.redirect("/admin/users"))
+    .then(() => res.redirect("/admin"))
     .catch(err => next(err));
 });
 

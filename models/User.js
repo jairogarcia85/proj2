@@ -10,11 +10,6 @@ const userSchema = new mongoose.Schema(
       enum: ["Admin", "User", "Client"],
       default: "User"
     },
-    status: {
-      type: String,
-      enum: ["Standard", "Pro"],
-      default: "Standard"
-    },
     company: String, //liga al ticket con el client
     ticket: [{ type: mongoose.Schema.Types.ObjectId, ref: "Ticket" }]
   },

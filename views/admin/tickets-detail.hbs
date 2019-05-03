@@ -7,11 +7,11 @@
 <hr>
 
 <div class="ticket-box ">
-  <h3>{{this.title}} > Status: {{this.status}} </h3> <br>
+  <h3>{{this.title}} <span class="separator">///</span> Status: {{this.status}} </h3> <br>
   <p><strong>Description:</strong> {{this.description}}</p> <br>
 
   <form action="/user/tickets/{{this._id}}" method="POST" id="details">
-    <label><strong>Cambiar Status: </strong></label>
+    <label><strong>Status: </strong></label>
     <select class="select" name="status" form="details">
       <option value="Open">Open</option>
       <option value="Pending">Pending</option>
@@ -20,20 +20,17 @@
     <p><br>
       <input class="button is-primary" type="submit" value="Submit">
     </p>
-
-
+    <br>
   </form>
-<<<<<<< HEAD
-
-=======
   <ul>
-  {{#if userComment}}
-  {{#each userComment as |comment|}}
-  <li>{{comment}}</li>
-  {{/each}}
-  {{/if}}
+    {{#if userComment}}
+    {{#each userComment as |comment|}}
+    <p>
+      <li>Reply: {{comment}}</li>
+    </p>
+    {{/each}}
+    {{/if}}
   </ul>
->>>>>>> 8ebf0bfda11967f25d428a1ea3a1b62a3810f760
   <form action="/tickets/view/{{this._id}}" method="POST" id="details">
     <div>
       <br>
