@@ -21,5 +21,25 @@
       <input class="button is-primary" type="submit" value="Submit">
     </p>
 
+
+  </form>
+
+  <form action="/tickets/view/{{this._id}}" method="POST" id="details">
+    <div>
+      <br>
+      <button class="button is-primary" type="button" name="tab" value="Reply" onclick="show2();">Reply</button>
+      <div id="comment" class="hide">
+        <hr>
+        <p>Add your reply/comment</p>
+        <input class="input" type="input" name="one">
+        <input class="button is-primary" type="submit" value="Submit">
+      </div>
+    </div>
   </form>
 </div>
+
+<script>
+  function show2() {
+    document.getElementById('comment').style.display = 'block';
+  }
+</script>

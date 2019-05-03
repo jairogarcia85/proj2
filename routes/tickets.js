@@ -35,21 +35,6 @@ router.post("/", isLogged, (req, res, next) => {
   }
 });
 
-router.post("/:id", (req, res, next) => {
-  const { id } = req.params;
-  if (
-    req.user.role === "Client" ||
-    req.user.role === "User" ||
-    req.user.role === "Admin"
-  ) {
-    Ticket.findByIdAndUpdate(id, { status: req.body.status })
-      .then(() => {
-        res.redirect("/tickets");
-      })
-      .catch(err => next(err));
-  }
-});
-
 router.get("/view-tickets", isLogged, (req, res, next) => {
   Ticket.find({})
     .sort({ createdAt: -1 })
@@ -68,6 +53,31 @@ router.get("/:id", (req, res, next) => {
     .then(data => {
       console.log(data);
       res.render("admin/tickets-detail", data);
+    })
+    .catch(err => next(err));
+});
+
+router.post("/view/:id", isLogged, (req, res, next) => {
+  let { id } = req.params;
+  console.log(id);
+  Ticket.findByIdAndUpdate(
+    id,
+    { $push: { userComment: req.body.one } },
+    { new: true }
+  ).then(user => {
+    console.log(user);
+    res.redirect(`/tickets/${id}`);
+  });
+});
+
+router.post("/:id", (req, res, next) => {
+  const { id } = req.params;
+  if (!req.user) {
+    res.redirect("/auth/login");
+  }
+  Ticket.findByIdAndUpdate(id, { status: req.body.status })
+    .then(() => {
+      res.redirect("/tickets");
     })
     .catch(err => next(err));
 });

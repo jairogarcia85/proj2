@@ -4,17 +4,10 @@ const ticketSchema = new mongoose.Schema({
   title: String,
   area: String,
   description: String,
-  userComment: {
-    username: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    content: String,
-    date: Date
-  },
+  userComment: [String],
   clientComment: {
     clientname: {
-      type:mongoose.Schema.Types.ObjectId,
+      type: mongoose.Schema.Types.ObjectId,
       ref: "Client"
     },
     content: String,

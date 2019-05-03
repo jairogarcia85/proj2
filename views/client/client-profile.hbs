@@ -11,7 +11,7 @@
   {{#each tickets as |ticket| }}
   <hr>
   <div class="ticket-box">
-    <h3>{{ticket.title}} <|> Status: {{ticket.status}} </h3> <br>
+    <h3>{{ticket.title}} <span class="separator">///</span> Status: {{ticket.status}} </h3> <br>
     <p><strong>Description:</strong> {{ticket.description}}</p><br>
     <a class="button is-primary" href="/tickets/{{ticket._id}}">Enter</a>
   </div>

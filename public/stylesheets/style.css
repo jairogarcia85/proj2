@@ -70,4 +70,10 @@ footer {
 .users-grid {
   display: grid; }
 
+.hide {
+  display: none; }
+
+.separator {
+  color: #00c4a7; }
+
 /*# sourceMappingURL=style.css.map */
