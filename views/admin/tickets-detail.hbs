@@ -23,7 +23,17 @@
 
 
   </form>
+<<<<<<< HEAD
 
+=======
+  <ul>
+  {{#if userComment}}
+  {{#each userComment as |comment|}}
+  <li>{{comment}}</li>
+  {{/each}}
+  {{/if}}
+  </ul>
+>>>>>>> 8ebf0bfda11967f25d428a1ea3a1b62a3810f760
   <form action="/tickets/view/{{this._id}}" method="POST" id="details">
     <div>
       <br>

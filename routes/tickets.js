@@ -64,9 +64,15 @@ router.post("/view/:id", isLogged, (req, res, next) => {
     id,
     { $push: { userComment: req.body.one } },
     { new: true }
+<<<<<<< HEAD
   ).then(user => {
     console.log(user);
     res.redirect(`/tickets/${id}`);
+=======
+  ).then(ticket => {
+    console.log(ticket);
+    res.render("admin/tickets-detail", ticket);
+>>>>>>> 8ebf0bfda11967f25d428a1ea3a1b62a3810f760
   });
 });
 
@@ -76,10 +82,18 @@ router.post("/:id", (req, res, next) => {
     res.redirect("/auth/login");
   }
   Ticket.findByIdAndUpdate(id, { status: req.body.status })
+<<<<<<< HEAD
     .then(() => {
+=======
+    .then(ticket => {
+>>>>>>> 8ebf0bfda11967f25d428a1ea3a1b62a3810f760
       res.redirect("/tickets");
     })
     .catch(err => next(err));
 });
 
 module.exports = router;
+
+
+
+
