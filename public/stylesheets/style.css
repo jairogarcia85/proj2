@@ -70,4 +70,7 @@ footer {
 .users-grid {
   display: grid; }
 
+.hide {
+  display: none; }
+
 /*# sourceMappingURL=style.css.map */

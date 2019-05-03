@@ -3,14 +3,7 @@ const mongoose = require("mongoose");
 const ticketSchema = new mongoose.Schema({
   title: String,
   description: String,
-  userComment: {
-    username: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref: "User"
-    },
-    content: String,
-    date: Date
-  },
+  userComment: [String],
   clientComment: {
     clientname: {
       type:mongoose.Schema.Types.ObjectId,

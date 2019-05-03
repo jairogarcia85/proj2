@@ -6,9 +6,11 @@ const { ObjectId } = require("mongoose").Types;
 
 const { isLogged } = require("../handlers/middlewares");
 
-router.get("/create-ticket", (req, res, next) => res.render("admin/tickets"));
+router.get("/create-ticket", isLogged, (req, res, next) =>
+  res.render("admin/tickets")
+);
 
-router.post("/", (req, res, next) => {
+router.post("/", isLogged, (req, res, next) => {
   if (!req.user) {
     res.redirect("/auth/login");
   }
@@ -33,55 +35,55 @@ router.post("/", (req, res, next) => {
   }
 });
 
-router.post("/:id", (req, res, next) => {
-  const { id } = req.params;
-  if (
-    req.user.role === "Client" ||
-    req.user.role === "User" ||
-    req.user.role === "Admin"
-  ) {
-    Ticket.findByIdAndUpdate(id, { status: req.body.status })
-      .then(() => {
-        res.redirect("/tickets");
-      })
-      .catch(err => next(err));
-  }
-});
-
-
-
-router.get("/view-tickets", (req, res, next) => {
+router.get("/view-tickets", isLogged, (req, res, next) => {
   Ticket.find({})
-  .sort({ createdAt: -1 })
-  .then(tickets => {
-    res.render("admin/view-tickets", { tickets });
-  })
-  .catch(err => next(err));
+    .sort({ createdAt: -1 })
+    .then(tickets => {
+      if (req.user.role === "Client") {
+        res.redirect("../client");
+      }
+      res.render("admin/view-tickets", { tickets });
+    })
+    .catch(err => next(err));
 });
 
 router.get("/:id", (req, res, next) => {
   const { id } = req.params;
   Ticket.findById(id)
-  .then(data => {
-    console.log(data);
-    res.render("admin/tickets-detail", data);
-  })
-  .catch(err => next(err));
+    .then(data => {
+      console.log(data);
+      res.render("admin/tickets-detail", data);
+    })
+    .catch(err => next(err));
 });
 
-//router.get("/:id", (req, res, next) => {
-//  const { id } = req.params;
-//  if (
-//    req.user.role !== "Client" ||
-//    req.user.role !== "User" ||
-//    req.user.role !== "Admin"
-//  ) {
-//    Ticket.findByIdAndUpdate(id, { status: req.body.status })
-//      .then(() => {
-//        res.redirect("/auth/login");
-//      })
-//      .catch(err => next(err));
-//  }
-//});
+router.post("/view/:id", isLogged, (req, res, next) => {
+  let { id } = req.params;
+  console.log(id);
+  Ticket.findByIdAndUpdate(
+    id,
+    { $push: { userComment: req.body.one } },
+    { new: true }
+  ).then(ticket => {
+    console.log(ticket);
+    res.render("admin/tickets-detail", ticket);
+  });
+});
+
+router.post("/:id", (req, res, next) => {
+  const { id } = req.params;
+  if (!req.user) {
+    res.redirect("/auth/login");
+  }
+  Ticket.findByIdAndUpdate(id, { status: req.body.status })
+    .then(ticket => {
+      res.redirect("/tickets");
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router;
+
+
+
+
